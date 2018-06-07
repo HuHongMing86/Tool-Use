@@ -1,0 +1,310 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>
+   Made with Remarkable!
+  </title>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/github.min.css" rel="stylesheet"/>
+  <style type="text/css">
+   body,table tr{background-color:#fff}table tr td,table tr th{border:1px solid #ccc;text-align:left;padding:6px 13px;margin:0}pre code,table,table tr{padding:0}hr,pre code{background:0 0}body{font:16px Helvetica,Arial,sans-serif;line-height:1.4;color:#333;word-wrap:break-word;padding:10px 15px}strong,table tr th{font-weight:700}h1{font-size:2em;margin:.67em 0;text-align:center}h2{font-size:1.75em}h3{font-size:1.5em}h4{font-size:1.25em}h1,h2,h3,h4,h5,h6{font-weight:700;position:relative;margin-top:15px;margin-bottom:15px;line-height:1.1}h1,h2{border-bottom:1px solid #eee}hr{height:0;margin:15px 0;overflow:hidden;border:0;border-bottom:1px solid #ddd}a{color:#4183C4}a.absent{color:#c00}ol,ul{padding-left:15px;margin-left:5px}ol{list-style-type:lower-roman}table tr{border-top:1px solid #ccc;margin:0}table tr:nth-child(2n){background-color:#aaa}table tr td :first-child,table tr th :first-child{margin-top:0}table tr td:last-child,table tr th :last-child{margin-bottom:0}img{max-width:100%}blockquote{padding:0 15px;border-left:4px solid #ccc}code,tt{margin:0 2px;padding:0 5px;white-space:nowrap;border:1px solid #eaeaea;background-color:#f8f8f8;border-radius:3px}pre code{margin:0;white-space:pre;border:none}.highlight pre,pre{background-color:#f8f8f8;border:1px solid #ccc;font-size:13px;line-height:19px;overflow:auto;padding:6px 10px;border-radius:3px}
+  </style>
+ </head>
+ <body>
+  <h1>
+   ubuntu16.04 + opencv3 + Nvidia 显卡驱动 + cuda8.0 + cudnn5.1 + caffe 安装 + python2
+  </h1>
+  <h2>
+   安装opencv3
+  </h2>
+  <p>
+   直接使用pip install opencv-python 即可安装成功，如果需要一些拓展功能，则需要使用pip安装contrib版本。
+  </p>
+  <h2>
+   安装Nvidia 显卡驱动
+  </h2>
+  <h3>
+   1. 去Nvidia官网选择自己电脑显卡对应的型号的驱动，下载.run文件
+  </h3>
+  <h3>
+   2. 卸载原先所有的驱动：
+  </h3>
+  <pre><code class="bash">sudo apt-get remobe --purge nvidia*
+sudo chmod a+x *.run
+</code></pre>
+  <h3>
+   3.禁用集成的nouveau驱动。
+  </h3>
+  <p>
+   将驱动添加到黑名单blacklist.conf中，但是由于该文件的属性不允许修改。所以需要先修改文件属性。
+  </p>
+  <pre><code class="bash">查看属性
+sudo ls -lh /etc/modprob.d/blacklist.conf
+修改属性
+sudo chmod 666 /etc/modprobe.d/blacklist.conf
+
+sudo vim /etc/modprob.d/blacklist.conf
+</code></pre>
+  <p>
+   然后在文件后添加以下几行：
+  </p>
+  <pre><code class="bash">blacklist vga16fb
+blacklist nouveau
+blacklist rivafb
+blacklist rivatv
+blacklist nvidiafb
+</code></pre>
+  <h3>
+   4.开始安装
+  </h3>
+  <p>
+   先按Ctrl+Alt+F1到控制台，关闭当前图形环境
+  </p>
+  <pre><code class="bash">sudo service lightdm stop
+</code></pre>
+  <p>
+   安装驱动
+  </p>
+  <pre><code class="bash">sudo chmod a+x NVIDIA-LINUX...run
+sudo ./NVIDIA.....run -no-x-check -no-nouveau-check -no-opengl-files
+</code></pre>
+  <p>
+   最后重启图形环境
+  </p>
+  <pre><code class="bash">sudo service lightdm start
+</code></pre>
+  <h3>
+   5. 查看显卡驱动版本
+  </h3>
+  <p>
+   可以通过以下命令确定驱动是否正确安装
+  </p>
+  <pre><code class="bash">cat /proc/driver/nvidia/version
+</code></pre>
+  <p>
+   或者
+  </p>
+  <pre><code class="bash">nvidia-smi
+</code></pre>
+  <p>
+   如果有一个表个显示自己的显卡型号，说明安装成功
+   <br/>
+   <img alt="" src="./images/1.png"/>
+   <br/>
+   <strong>
+    ps: 如果使用nvidia-setting 时 本人出现X-server错误的情况，但是按照网上很多教程没有能够弄好。但是对于后面用GPU进行训练没有什么影响。
+   </strong>
+  </p>
+  <h2>
+   安装cuda8.0+cudnn5.1
+  </h2>
+  <p>
+   cuda是nvidia的编程语言平台，想使用GPU就必须使用cuda。
+  </p>
+  <h3>
+   1. 下载cuda8.0源文件
+  </h3>
+  <p>
+   <a href="https://developer.nvidia.com/">
+    cuda官网
+   </a>
+   <br/>
+   选择runfile(local)
+  </p>
+  <h3>
+   2. 安装
+  </h3>
+  <pre><code class="bash">sudo sh cuda_8.0.......run
+</code></pre>
+  <p>
+   在安装的过程中，由于之前已经安装了nvidia的驱动，所以在是否安装驱动这一选项选择n其他直接默认护在哦和y就行。
+  </p>
+  <h3>
+   3.修改配置文件
+  </h3>
+  <p>
+   修改启动bash的配置文件，将一些路经直接预加载。
+  </p>
+  <pre><code class="bash">sudo vim /etc/profile
+</code></pre>
+  <p>
+   在文件末尾添加以下语句
+  </p>
+  <pre><code class="bash">export PATH=/usr/local/cuda-8.0/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64$LD_LIBRARY_PATH
+</code></pre>
+  <h3>
+   4. 重启电脑
+  </h3>
+  <pre><code class="bash">sudo shutdown -r now
+</code></pre>
+  <h3>
+   5.测试cuda的Samples
+  </h3>
+  <pre><code class="bash">cd /usr/local/cuda-8.0/samples/1_Utilities/deviceQuery
+sudo make
+./deviceQuery
+</code></pre>
+  <p>
+   <img alt="" src="./images/2.png"/>
+  </p>
+  <h3>
+   6.安装cudnn
+  </h3>
+  <p>
+   首先去官网下载cudnn，下载时需要注册帐号。然忽选择对应的cuda版本进行下载即可。
+  </p>
+  <p>
+   下载完cudnn之后，进行解压，然后将内部文件复制到cuda安装路经即可。
+  </p>
+  <pre><code class="bash">sudo cp cudnn.h /usr/local/cuda/include/    #复制头文件
+</code></pre>
+  <p>
+   然后在cd到lib64目录下进行复制链接：
+  </p>
+  <pre><code class="bash">sudo cp lib* /usr/local/cuda/lib64/    #复制动态链接库
+cd /usr/local/cuda/lib64/
+sudo rm -rf libcudnn.so libcudnn.so.5    #删除原有动态文件
+sudo ln -s libcudnn.so.5.0.5 libcudnn.so.5  #生成软衔接
+sudo ln -s libcudnn.so.5 libcudnn.so      #生成软链接
+</code></pre>
+  <p>
+   这样就完成了cudnn的安装
+  </p>
+  <h2>
+   安装caffe
+  </h2>
+  <h3>
+   1. 首先安装各种依赖包
+  </h3>
+  <pre><code class="bash">sudo apt-get update 
+sudo apt-get install -y build-essential cmake git pkg-config 
+ sudo apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler 
+ sudo apt-get install -y libatlas-base-dev 
+ sudo apt-get install -y--no-install-recommends libboost-all-dev 
+ sudo apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev 
+ sudo apt-get install -y python-pip 
+ sudo apt-get install -y python-dev 
+ sudo apt-get install -y python-numpy python-scipy 
+</code></pre>
+  <h3>
+   2. 然后从github上下载caffe源码
+  </h3>
+  <p>
+   cd 到要安装的位置，然后：
+  </p>
+  <pre><code class="bash">git clone https://github.com/BVLC/caffe.git  //从github上git caffe
+cd caffe //打开到刚刚git下来的caffe 
+sudo cp Makefile.config.example Makefile.config   //将Makefile.config.example的内容复制到Makefile.config 
+//因为make指令只能make Makefile.config文件，而Makefile.config.example是caffe给出的makefile例子 
+sudo gedit Makefile.config //打开Makefile.config文件
+</code></pre>
+  <h3>
+   3. 对Makefile.config进行修改。
+  </h3>
+  <ul>
+   <li>
+    <p>
+     如果使用cudnn 则去掉cudnn前面的注释
+    </p>
+   </li>
+   <li>
+    <p>
+     如果使用的是opencv3 则去掉opencv3前面的注释
+    </p>
+   </li>
+   <li>
+    <p>
+     //重要的一项 将# Whatever else you find you need goes here.下面的 INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib
+     <br/>
+     修改为： INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
+     <br/>
+     LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial //这是因为ubuntu16.04的文件包含位置发生了变化，尤其是需要用到的hdf5的位置，所以需要更改这一路径
+    </p>
+   </li>
+   <li>
+    <p>
+     可能需要修改numpy的安装路经，因为给的文档好像没有加local。
+    </p>
+   </li>
+   <li>
+    <p>
+     去掉CUDA_ARCH的前两行，不然在后面编译的时候会有警告。
+    </p>
+   </li>
+   <li>
+    <p>
+     其余默认即可
+    </p>
+   </li>
+  </ul>
+  <h3>
+   4. 执行下面的语句来进行编译
+  </h3>
+  <pre><code class="bash">make all -j8
+make test -j8
+make runtest -j8
+make pycaffe -j8
+</code></pre>
+  <h3>
+   5.可能遇到的问题
+  </h3>
+  <p>
+   error while loading shared libraries: libcudart.so.8.0: cannot open shared object file: No such file or directory
+  </p>
+  <p>
+   解决方法：
+  </p>
+  <pre><code class="bash">sudo cp /usr/local/cuda-8.0/lib64/libcudart.so.8.0 /usr/local/lib/libcudart.so.8.0 &amp;&amp; sudo ldconfig
+sudo cp /usr/local/cuda-8.0/lib64/libcublas.so.8.0 /usr/local/lib/libcublas.so.8.0 &amp;&amp; sudo ldconfig
+sudo cp /usr/local/cuda-8.0/lib64/libcurand.so.8.0 /usr/local/lib/libcurand.so.8.0 &amp;&amp; sudo ldconfig
+ps. ldconfig命令是一个动态链接库管理命令，是为了让动态链接库为系统共享
+</code></pre>
+  <h3>
+   6. 将caffe加到Python导入时的路经中
+  </h3>
+  <pre><code class="bash">sudo vim ~/.bashrc
+在文档末尾添加
+export PYTHONPATH=/home/wangdh15/caffe_cuda_cudnn/python:$PYTHONPATH
+
+重新加载配置文件
+source ~/.bashrc
+</code></pre>
+  <h3>
+   7. 测试是否成功
+  </h3>
+  <pre><code class="bash">python
+import caffe
+</code></pre>
+  <p>
+   <img alt="" src="./images/3.png"/>
+  </p>
+  <h3>
+   8. 安装完成
+  </h3>
+  <hr/>
+  <h2>
+   参考文献
+  </h2>
+  <p>
+   <a href="https://blog.csdn.net/autocyz/article/details/52299889">
+    Ubuntu16.04+cuda8.0+caffe安装教程
+   </a>
+  </p>
+  <p>
+   <a href="https://blog.csdn.net/qq_40155090/article/details/79153530">
+    ubuntu16.04安装cuda8.0
+   </a>
+  </p>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js">
+  </script>
+  <script>
+   hljs.initHighlightingOnLoad();
+  </script>
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript">
+  </script>
+  <script type="text/javascript">
+   MathJax.Hub.Config({"showProcessingMessages" : false,"messageStyle" : "none","tex2jax": { inlineMath: [ [ "$", "$" ] ] }});
+  </script>
+ </body>
+</html>
