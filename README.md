@@ -1,2 +1,4 @@
-# caffe_install
-caffe安装过程遇到的问题和解决方法
+# Ubuntu16.04-Use
+日常使用Ubuntu16.04遇到的问题以及解决方法
+
+安装caffe遇到的问题以及解决方法
