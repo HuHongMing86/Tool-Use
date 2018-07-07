@@ -76,6 +76,16 @@ Python的IDE，官网下载安装包安装即可。
 
 [Ubuntu16.04安装wps并解决系统缺失字体问题](https://blog.csdn.net/zmken497300/article/details/77531982)
 
+##### LaTeX
+直接apt安装就行 
+
+```
+sudo apt-get install texlive-full
+sudo  apt-get install texstudio
+```
+然后打开texstudio，将build改成xdlatex，然后就可以使用中文了。
+
+
 ##### 微信
 直接在网页版微信通过google chrome 转化为应用即可。
 
