@@ -89,3 +89,13 @@ conda remove --name your_env_name package_name
 #### 参考文献
 
 [用conda创建python虚拟环境](https://blog.csdn.net/lyy14011305/article/details/59500819)
+
+
+
+#### 安装使用tensorflow
+如果安装好了N卡驱动，那么可以直接使用下面命令安装tensorflow
+```
+conda install tensorflow-gpu
+codna install cudnn
+```
+其中安装cudnn可以安装cudatoolkit以及cudnn。
