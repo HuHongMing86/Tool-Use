@@ -99,3 +99,7 @@ conda install tensorflow-gpu
 codna install cudnn
 ```
 其中安装cudnn可以安装cudatoolkit以及cudnn。
+
+### 桌面美化
+可以参考下面文章：
+[Ubuntu18.04美化](https://www.cnblogs.com/lishanlei/p/9090404.html)U
