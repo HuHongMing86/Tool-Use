@@ -103,3 +103,30 @@ codna install cudnn
 ### 桌面美化
 可以参考下面文章：
 [Ubuntu18.04美化](https://www.cnblogs.com/lishanlei/p/9090404.html)
+
+### git 
+首先建立本地的文件夹 然后在文件夹内部使用下面的命令进行初始化：
+```bash
+git init
+```
+然后将远程仓库与本地链接起来
+```bash
+git remote add origin git@github.com:michaelliao/learngit.git
+```
+
+然后可以讲本地的文件全部上传
+```bash
+git push -u origin master
+```
+从现在起，只要本地作了提交，就可以通过命令同步：
+```bash
+git push origin master
+```
+
+#### git 常用命令：
+```bash
+git add .
+git commit -m "..."
+git status
+git push origin master
+```
