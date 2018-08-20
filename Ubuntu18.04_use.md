@@ -130,3 +130,32 @@ git commit -m "..."
 git status
 git push origin master
 ```
+
+### tmux 
+
+tmux是一款终端分屏工具，可以复用终端
+
+安装`sudo apt-get install tmux`
+
+快捷键：
+
+Ctrl+b " - split pane horizontally
+Ctrl+b % - 将当前窗格垂直划分
+Ctrl+b 方向键 - 在各窗格间切换
+Ctrl+b，并且不要松开Ctrl，方向键 - 调整窗格大小
+Ctrl+b c - (c)reate 生成一个新的窗口
+Ctrl+b n - (n)ext 移动到下一个窗口
+Ctrl+b p - (p)revious 移动到前一个窗口.
+Ctrl+b 空格键 - 采用下一个内置布局 
+Ctrl+b q - 显示分隔窗口的编号 
+Ctrl+b o - 跳到下一个分隔窗口 
+Ctrl+b & - 确认后退出 tmux 
+
+**启动鼠标功能**
+
+在tmux中默认是不能够通过鼠标进行翻页什么的，但是我们可以通过修改tmux配置文件来开启这个功能
+```
+vim ~/.tmux.conf
+```
+
+然后插入`sset-option -g mouse on ` 在source一下即可。
