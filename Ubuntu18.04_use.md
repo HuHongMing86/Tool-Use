@@ -199,3 +199,17 @@ iconv -f gbk -t utf8 shujujiegou.txt > shujujiegou.txt.utf8
 然后就可以解决乱码问题了。
 
 **PS**：在Linux下用vim打开不会出现乱码的问题。
+
+### 系统资源监视器
+
+在窗口右上角可以用来监视系统资源占用情况
+
+```bash
+sudo add-apt-repository ppa:fossfreedom/indicator-sysmonitor
+sudo apt-get update
+sudo apt-get install indicator-sysmonitor
+
+Search in the dash for "indicator-sysmonitor" to run
+```
+
+[Github链接](https://github.com/fossfreedom/indicator-sysmonitor)
