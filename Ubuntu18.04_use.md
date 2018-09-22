@@ -183,3 +183,19 @@ vim ~/.tmux.conf
 
 但是这个缓冲区和系统的粘贴板缓冲区不是一个。如果想使用系统的缓冲区的话，使用`Ctrl+Shift+V`键进行粘贴。
 
+### Windows 下的txt的乱码问题
+
+在windows下编辑的txt文件在Linux下直接双击打开会出现乱码，出现这种情况的原因为两种操作系统的中文压缩方式不同，在windows环境中中文压缩一般为gbk，而在linux环境中为utf8，这就导致了在windows下能正常显示
+txt文件在linux环境下打开呈现了乱码状态。
+
+解决方法：
+
+在linux用iconv命令，如乱码文件名为shujujiegou.txt，那么在终端输入如下命令：
+
+```
+iconv -f gbk -t utf8 shujujiegou.txt > shujujiegou.txt.utf8
+```
+
+然后就可以解决乱码问题了。
+
+**PS**：在Linux下用vim打开不会出现乱码的问题。
