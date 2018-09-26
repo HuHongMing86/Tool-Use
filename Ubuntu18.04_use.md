@@ -213,3 +213,21 @@ Search in the dash for "indicator-sysmonitor" to run
 ```
 
 [Github链接](https://github.com/fossfreedom/indicator-sysmonitor)
+
+### 便签 Xpad
+
+```bash
+sudo apt-get install xpad
+```
+可以放在桌面上的一款比较好的便签。
+
+### 资源监视器
+
+conky是一款比较好的系统资源监视器。安装conky-manager可以更好地配置，但是需要先安装realpath，然后才能够安装成狗conky-manager.
+
+安装conky只需要运行
+
+```bash
+sudo apt-get install conky
+```
+[具体安装过程见此视频](https://www.youtube.com/watch?v=Xoez7OYFyeY)
