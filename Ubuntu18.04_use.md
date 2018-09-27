@@ -245,3 +245,6 @@ vim 是linux自带的一款编辑器，为了能够支持代码不全功能，�
 
 [.vimrc配置文件参考](https://github.com/fisadev/fisa-vim-config)
 
+### Transmission
+
+一款下载软件，可以用作北邮人做种使用。安装方法见搜索引擎。
