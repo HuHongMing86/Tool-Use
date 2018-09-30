@@ -133,3 +133,14 @@ Git是一种分布式管理系统，可以使用一台电脑充当服务器的�
 具体如何进行远程仓库管理见一下链接。
 [远程仓库管理](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374385852170d9c7adf13c30429b9660d0eb689dd43a000)
 
+### 分支管理
+
+关于分支的理解，可以参考下面的网站。[分支理解](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840038939c291467cc7c747b1810aab2fb8863508000)
+
+分支常用的命令：
+
+- 查看分支：`git branch`
+- 创建分支：`git branch <name>`
+- 切换分支：`git checkout <name>`
+- 合并某分支到当前分支：`git merge <name>`
+- 删除分支：`git branch -d <name>`
