@@ -270,6 +270,9 @@ vim 是linux自带的一款编辑器，为了能够支持代码不全功能，�
 
 [.vimrc配置文件参考](https://github.com/fisadev/fisa-vim-config)
 
+[awe vim 配置](https://github.com/amix/vimrc)
+现在到家目录中，然后运行install_awesome_vimrc.sh即可生成需要的.vimrc，然后在其中添加提示的信息来取消显示错误信息。
+
 ### Transmission
 
 一款下载软件，可以用作北邮人做种使用。安装方法见搜索引擎。可直接`sudo apt-get install`即可。
