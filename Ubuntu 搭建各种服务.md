@@ -14,3 +14,45 @@
 - 首先安装apache2`sudo apt-get install apache2`
 - 然后会在`/var/www/html/文件夹下，这里是存放站点的文件夹。`
 - 配置文件在`/etc/apache2/`文件夹下，如果需要修改端口的话，可以修改`port.conf`文件，默认是80端口。
+
+#### 3. 搭建shadowsocks服务
+
+- 首先安装pip `sudo apt-get install python-pip`
+- 然后安装 shadowsocks `pip install shadowsocks`
+
+然后配置Shadowsocks
+```
+{
+
+    "server": "0.0.0.0",
+
+    "server_port": 443,   #自定义端口,就是需要对外开放的端口
+
+    "local_address": "127.0.0.1",
+
+    "local_port": 1080,
+
+    "password": "你的密码",  # 登录需要的密码
+
+    "timeout": 300,         
+
+    "method": "aes-256-cfb",
+
+    "workers": 1
+
+}
+```
+
+然后启动shadowsocks
+```
+# 启动
+ssserver -c /etc/shadowsocks.json -d start
+
+# 停止
+ssserver -c /etc/shadowsocks.json -d stop
+
+# 重启
+ssserver -c /etc/shadowsocks.json -d restart
+
+```
+
