@@ -51,4 +51,5 @@ ssserver -c /etc/shadowsocks.json -d stop
 ssserver -c /etc/shadowsocks.json -d restart
 
 ```
-
+可以设计开机自启动：
+修改`/etc/rc.local`，然后在其中添加启动ss的命令：`ssserver -c /etc/shadowsocks.json -d start`即可。
