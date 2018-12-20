@@ -25,7 +25,7 @@
 
  {                                                                                                                                                 
      "server": "0.0.0.0",                                                                                                                          
-     "local_address": "127.0.0.1",                                                                                                                 
+     "local_address": "127.0.0.1",         # 感觉这个和下面的那个没有什么作用，删掉了页没关系。。。                                                                                                        
      "local_port": 1080,                                                                                                                           
      "timeout": 600,                                                                                                                               
      "method": "aes-256-cfb",                                                                                                                      
