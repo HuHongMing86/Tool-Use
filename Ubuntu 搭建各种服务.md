@@ -22,25 +22,20 @@
 
 然后配置Shadowsocks
 ```
-{
 
-    "server": "0.0.0.0",
-
-    "server_port": 443,   #自定义端口,就是需要对外开放的端口
-
-    "local_address": "127.0.0.1",
-
-    "local_port": 1080,
-
-    "password": "你的密码",  # 登录需要的密码
-
-    "timeout": 300,         
-
-    "method": "aes-256-cfb",
-
-    "workers": 1
-
-}
+ {                                                                                                                                                 
+     "server": "0.0.0.0",                                                                                                                          
+     "local_address": "127.0.0.1",                                                                                                                 
+     "local_port": 1080,                                                                                                                           
+     "timeout": 600,                                                                                                                               
+     "method": "aes-256-cfb",                                                                                                                      
+     "port_password":                                                                                                                              
+     {                                                                                                                                             
+         "5200":"1234",    # 需要开设的端口喝密码                                                                                                                        
+         "9999":"1234"                                                                                                          
+     }                                                                                                                                             
+ } 
+ 
 ```
 
 然后启动shadowsocks
