@@ -53,3 +53,20 @@ ssserver -c /etc/shadowsocks.json -d restart
 ```
 可以设计开机自启动：
 修改`/etc/rc.local`，然后在其中添加启动ss的命令：`ssserver -c /etc/shadowsocks.json -d start`即可。
+
+#### 4.远程访问jupyter notebook
+１　生成一个notebook配置文件
+`jupyter notebook --generate-config`
+
+2 生成密码：
+`jupyter notebook password` 生成的密码在`.jupyter/jupyter_notebook_config,json`
+
+3 修改配置文件
+`jupyter_notebook_config.py`
+```
+c.NotebookApp.ip='*'
+c.NotebookApp.password = u'sha:ce...刚才复制的那个密文'
+c.NotebookApp.open_browser = False
+c.NotebookApp.port =8888 #可自行指定一个端口, 访问时使用该端口
+```
+然后就可以使用`jupyter notebook`打开notebook，然后使用ip:8888访问jupyter notebook.
