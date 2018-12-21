@@ -70,3 +70,9 @@ c.NotebookApp.open_browser = False
 c.NotebookApp.port =8888 #可自行指定一个端口, 访问时使用该端口
 ```
 然后就可以使用`jupyter notebook`打开notebook，然后使用ip:8888访问jupyter notebook.
+
+#### 5 搭建git服务器
+
+1. 首先安装git，然后创建一个git用户。
+2 在git用户下面创建下面的文件`.ssh/authorized_keys`,并将可以登录的用户的公钥存入，一行一个。
+3 在合适的位置创建仓库，然后远程使用`git clone ssh://ip:port/file_path`来访问。
