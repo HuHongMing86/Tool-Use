@@ -15,6 +15,20 @@
 - 然后会在`/var/www/html/文件夹下，这里是存放站点的文件夹。`
 - 配置文件在`/etc/apache2/`文件夹下，如果需要修改端口的话，可以修改`port.conf`文件，默认是80端口。
 
+##### 2.1 关于apache2的配置问题
+ 
+ 首先，如果需要修改监听端口的话，需要先修改`etc/apache2/`文件夹下的`port.conf`文件，然后修改`sites-availavle/000-default.conf`文件，
+ 将第一行的端口修改为对应的端口，然后这个文件同时配置了站点的目录，修改`DocumentRoot`可以修改地点。
+ 
+ `apache2`可以同时开放多个端口然后提供多个网站服务。这是需要修改一下配置文件：
+ 
+ - `port.conf`。将打开的端口添加到Listen port_number 中。
+ - `site_availavle/****.conf` ，可以复制默认的`000-default.conf`，然后修改端口和站点目录来指向新的网站。
+ - `site-enabled/***.conf` ，在这个文件夹中建立软连接连接到上面创建的`***.conf`文件。
+ 
+ 然后重启apache2服务`sudo service apache2 restart`就可以看到对应的端口打开同时通过浏览器就能够访问到自己的站点。
+ 
+ 
 #### 3. 搭建shadowsocks服务
 
 - 首先安装pip `sudo apt-get install python-pip`
