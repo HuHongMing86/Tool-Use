@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2017/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: 外文资料的书面翻译.aux
+The style file: plain.bst
+Database file #1: reference.bib
+Warning--empty journal in Lowe2015
+You've used 1 entry,
+            2118 wiz_defined-function locations,
+            502 strings with 4222 characters,
+and the built_in function-call counts, 321 in all, are:
+= -- 26
+> -- 23
+< -- 0
++ -- 9
+- -- 8
+* -- 23
+:= -- 65
+add.period$ -- 3
+call.type$ -- 1
+change.case$ -- 7
+chr.to.int$ -- 0
+cite$ -- 2
+duplicate$ -- 10
+empty$ -- 18
+format.name$ -- 8
+if$ -- 58
+int.to.chr$ -- 0
+int.to.str$ -- 1
+missing$ -- 1
+newline$ -- 8
+num.names$ -- 2
+pop$ -- 9
+preamble$ -- 1
+purify$ -- 6
+quote$ -- 0
+skip$ -- 7
+stack$ -- 0
+substring$ -- 5
+swap$ -- 0
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 4
+warning$ -- 1
+while$ -- 2
+width$ -- 2
+write$ -- 11
+(There was 1 warning)
