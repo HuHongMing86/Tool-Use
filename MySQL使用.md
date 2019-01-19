@@ -143,6 +143,17 @@ DELETE FROM students WHERE id>=5 AND id<=7;
 
 ```
 
+### 6 修改TABLE
+
+```sql
+使用ALTER TABLE 可以修改表格内容
+
+ALTER TABLE table_name ADD column_name column_type      # 添加一列
+等等
+
+
+```
+
 
 
 
