@@ -297,3 +297,10 @@ vim 是linux自带的一款编辑器，为了能够支持代码不全功能，�
 
 装就能够执行对应的指令了，如果指令太多，可以在服务器端写一个shell脚本，然后执行这个shell脚本即可！
 
+### 科学上网
+
+首先安装shadowsocks，直接在应用商店安装jike。
+
+然后配置chrome浏览器。先安装SwitchyOmega插件，由于67之后的浏览器不允许推动安装，所以参考[这篇文章](https://blog.csdn.net/achenyuan/article/details/81485092) 将插件变后缀名为zip然后解压，然后打开开发者模式，加载文件夹即可。
+
+然后配置插件，使用这个[教程](https://shimo.im/doc/5RxSHM3CeHQT5Eys/)即可。
