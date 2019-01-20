@@ -17,6 +17,17 @@ sudo ubuntu-drivers autoinstall
 
 当然为了提升速度，先将软件源换成清华源。具体操作可参考16.04使用。
 
+
+#### deepin 安装驱动
+
+首先进入系统，遇到问题见这个[文档](https://blog.csdn.net/HuaCode/article/details/83216338) 
+
+进入系统之后就安装驱动使用`sudo apt-get install nvidia-smi`会自动安装很多东西。
+
+然后使用deepin自带的显卡管理方法的软件，选择独显即可。然后按照指导完成安装。
+
+如果使用搜狗输入法出现问题，将家目录下的关于搜狗输入法的配置文件`.config/...   .sougou...`等 全部删除，然后再重启。
+
 ### 硬盘分区
 
 `sudo fdisk -l` 查看自己的设备是否被识别到。
