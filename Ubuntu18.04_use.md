@@ -1,4 +1,4 @@
-### Ubuntu18.04使用
+### Ubuntu18.04   Deepin使用
 #### 安装
 安装的时候主要是Nvidia显卡问题。
 首先安装的时候，在install ubuntu按e，然后在倒数第二行末尾的quiet splash 的后面空一格加上acpi_osi=linux nomodeset .如果在quiet splash 后面有---.直接删除就行。然后按F10进行安装。
