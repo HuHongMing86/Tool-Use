@@ -59,6 +59,12 @@ sudo ubuntu-drivers autoinstall
 
 然后需要安装一个库`sudo apt-get install nvidia-opencl-dev` ,然后就可以使用了。
 
+### deepin 系统备份
+
+直接使用deepin自带的备份软件，能够将整个硬盘或者分区备份。
+
+然后使用U盘安装live版系统，在启动live系统，对需要恢复的硬盘或者分区恢复。
+
 #### 常用软件
 其他常用软件的安装参考16.04.
 
