@@ -223,7 +223,7 @@ Ctrl+b & - 确认后退出 tmux
 vim ~/.tmux.conf
 ```
 
-然后插入`sset-option -g mouse on ` 在source一下即可。
+然后插入`set-window-option -g mouse on ` 在source一下即可。
 
 #### 复制粘贴
 
