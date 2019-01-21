@@ -53,6 +53,12 @@ sudo ubuntu-drivers autoinstall
 
 然后按照其中的格式添加一行即可。
 
+### deepin使用pytorch
+
+首先安装cudatoolkit  cudnn 对应的版本
+
+然后需要安装一个库`sudo apt-get install nvidia-opencl-dev` ,然后就可以使用了。
+
 #### 常用软件
 其他常用软件的安装参考16.04.
 
