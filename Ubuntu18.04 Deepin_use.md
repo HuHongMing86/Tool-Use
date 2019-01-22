@@ -225,6 +225,15 @@ vim ~/.tmux.conf
 
 然后插入`set-window-option -g mouse on ` 在source一下即可。
 
+
+```bash
+tmux new -s session_name    # 创建一个会话
+tmux detach                 # 退出当前会话，但是会话仍在运行 快捷键 C+b d
+tmux ls                     # 列出所有会话
+tmux a -t  session_name     # 进入会话
+tmux kill-session -t  session_name  # 终止会话
+```
+
 #### 复制粘贴
 
 在tmux中，可以使用下面的快捷键进行目标的选中，复制以及粘贴
